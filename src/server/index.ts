@@ -11,7 +11,7 @@ const koaCors = require("koa-cors");
 function createHookServer() {
   const app = new koa();
   const router = new Router();
-  app.use(bodyparser({}));
+  app.use(bodyparser());
   app.use(koaCors());
   function registerHook(
     path: string,
