@@ -3,9 +3,9 @@ import * as Koa from "koa";
 import * as koaBodyparser from "koa-bodyparser";
 import * as koaRouter from "koa-router";
 // require will finall import the correct packages
-const koa = require("Koa");
-const Router = require("koaRouter");
-const bodyparser = require("koaBodyparser");
+const koa = require("koa");
+const Router = require("koa-router");
+const bodyparser = require("koa-bodyparser");
 function createHookServer() {
   const app = new koa();
   const router = new Router();
