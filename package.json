@@ -3,7 +3,7 @@
     "build": "rm -rf ./dist && rollup -c"
   },
   "name": "simple-http-hook",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "module": "./dist/es/index.js",
