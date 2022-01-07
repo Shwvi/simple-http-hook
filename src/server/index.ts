@@ -16,24 +16,10 @@ function createHookServer() {
   function registerHook(
     path: string,
     methods: string[],
-    callback: (
-      request: Koa.Request,
-      response: Koa.Response & {
-        body: any;
-      }
-    ) => void,
+    middle: Koa.Middleware,
     opts?: koaRouter.ILayerOptions
   ) {
-    router.register(
-      path,
-      methods,
-      async (ctx, next) => {
-        const { request, response } = ctx;
-        await callback(request, response);
-        response.status = 200;
-      },
-      opts
-    );
+    router.register(path, methods, middle, opts);
   }
 
   function listen(port: number) {
