@@ -17,7 +17,7 @@ function createHookServer() {
     path: string,
     methods: string[],
     callback: (
-      getParams: URLSearchParams,
+      request: Koa.Request,
       response: Koa.Response & {
         body: any;
       }
@@ -29,7 +29,7 @@ function createHookServer() {
       methods,
       async (ctx, next) => {
         const { request, response } = ctx;
-        await callback(new URL(request.URL).searchParams, response);
+        await callback(request, response);
         response.status = 200;
       },
       opts
