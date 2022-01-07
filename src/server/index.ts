@@ -2,9 +2,9 @@ import * as Koa from "koa";
 import * as bodyParser from "koa-bodyparser";
 import * as Router from "koa-router";
 
-const router = new Router();
 function createHookServer() {
   const app = new Koa();
+  const router = new Router();
   app.use(bodyParser({}));
   function registerHook(
     path: string,
@@ -40,6 +40,7 @@ function createHookServer() {
         });
     });
   }
+  app.use(router.routes());
   return { listen, registerHook };
 }
 
