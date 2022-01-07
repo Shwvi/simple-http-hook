@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosRequestHeaders } from "axios";
+import axios, { AxiosRequestHeaders } from "axios";
 
 function createHookTrigger<response, request = any>({
   baseURL,

@@ -1,11 +1,15 @@
+// these packages will be namespaces
 import * as Koa from "koa";
-import * as bodyParser from "koa-bodyparser";
-import * as Router from "koa-router";
-
+import * as koaBodyparser from "koa-bodyparser";
+import * as koaRouter from "koa-router";
+// require will finall import the correct packages
+const koa = require("Koa");
+const Router = require("koaRouter");
+const bodyparser = require("koaBodyparser");
 function createHookServer() {
-  const app = new Koa();
+  const app = new koa();
   const router = new Router();
-  app.use(bodyParser({}));
+  app.use(bodyparser({}));
   function registerHook(
     path: string,
     methods: string[],
@@ -15,7 +19,7 @@ function createHookServer() {
         body: any;
       }
     ) => void,
-    opts?: Router.ILayerOptions
+    opts?: koaRouter.ILayerOptions
   ) {
     router.register(
       path,
