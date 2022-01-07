@@ -1,6 +1,48 @@
-import * as http from "http";
-function createServer() {}
+import * as Koa from "koa";
+import * as bodyParser from "koa-bodyparser";
+import * as Router from "koa-router";
 
-function createGetHook() {}
+const router = new Router();
+function createHookServer() {
+  const app = new Koa();
+  app.use(bodyParser({}));
+  function registerHook(
+    path: string,
+    methods: string[],
+    callback: (
+      getParams: URLSearchParams,
+      response: Koa.Response & {
+        body: any;
+      }
+    ) => void,
+    opts?: Router.ILayerOptions
+  ) {
+    router.register(
+      path,
+      methods,
+      async (ctx, next) => {
+        const { request, response } = ctx;
+        await callback(new URL(request.URL).searchParams, response);
+        response.status = 200;
+      },
+      opts
+    );
+  }
 
-function createPostHook() {}
+  function listen(port: number) {
+    return new Promise<void>((resolve, reject) => {
+      app
+        .listen(port, () => {
+          resolve();
+        })
+        .once("error", (err) => {
+          reject(err);
+        });
+    });
+  }
+  return { listen, registerHook };
+}
+
+export default {
+  createHookServer,
+};

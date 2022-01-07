@@ -3,7 +3,7 @@
     "build": "rm -rf ./dist && rollup -c"
   },
   "name": "simple-http-hook",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "module": "./dist/es/index.js",
@@ -11,6 +11,9 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.5",
+    "@types/koa-router": "^7.4.4",
     "cz-conventional-changelog": "3.3.0",
     "rollup": "^2.63.0",
     "rollup-plugin-polyfill-node": "^0.8.0",
@@ -25,6 +28,9 @@
     }
   },
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.1.1"
   }
 }

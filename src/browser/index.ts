@@ -4,31 +4,24 @@ function createHookTrigger<response, request = any>({
   baseURL,
   timeout,
   headers,
+  withCredentials,
 }: {
   baseURL: string;
   timeout?: number;
   headers?: AxiosRequestHeaders;
+  withCredentials?: boolean;
 }) {
   const triggerRequest = axios.create({
     baseURL,
     timeout,
     headers,
+    withCredentials,
   });
-  const triggeGet = <T = any>(path: string, config?: AxiosRequestConfig<T>) => {
-    return triggerRequest.get<request, response, T>(path, config);
-  };
 
-  const triggePost = <T = any>(
-    path: string,
-    data: typeof JSON,
-    config?: AxiosRequestConfig<T>
-  ) => {
-    return triggerRequest.post<request, response>(path, data, config);
-  };
   return {
     interceptors: triggerRequest.interceptors,
-    triggeGet,
-    triggePost,
+    triggeGet: triggerRequest.get,
+    triggePost: triggerRequest.post,
   };
 }
 
